@@ -9,7 +9,6 @@ public class RotatingCubeComponent extends JPanel {
         setBackground(Color.PINK);
         cube = new Cube();
         cube.scale(200);
-//        cube.translate(250, 250, 0);
         rotateCube();
     }
 
@@ -29,7 +28,7 @@ public class RotatingCubeComponent extends JPanel {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D)graphics;
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        graphics2D.translate(250, 250);
+        graphics2D.translate(Frame.WIDTH/2, Frame.HEIGHT/2);
         cube.draw(graphics2D);
     }
 }
