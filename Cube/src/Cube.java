@@ -42,8 +42,8 @@ public class Cube {
             facet.rotate(x, y, z);
     }
 
-    public void draw(Graphics2D graphics) {
-        for (Facet facet : facets) facet.draw(graphics);
+    public void draw(Graphics2D graphics, boolean transparent) {
+        for (Facet facet : facets) facet.draw(graphics, transparent);
     }
 
 }

@@ -5,7 +5,13 @@ import java.awt.event.ActionListener;
 
 public class RotatingCubeComponent extends JPanel {
     private Cube cube;
-    public RotatingCubeComponent() {
+    private final int WIDTH = 500;
+    private final int HEIGHT = 500;
+    public boolean transparent = false;
+    public RotatingCubeComponent(boolean transparent) {
+        this.transparent = transparent;
+//        setSize(500, 500);
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.PINK);
         cube = new Cube();
         cube.scale(200);
@@ -28,7 +34,7 @@ public class RotatingCubeComponent extends JPanel {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D)graphics;
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        graphics2D.translate(Frame.WIDTH/2, Frame.HEIGHT/2);
-        cube.draw(graphics2D);
+        graphics2D.translate(WIDTH/2, HEIGHT/2);
+        cube.draw(graphics2D, transparent);
     }
 }

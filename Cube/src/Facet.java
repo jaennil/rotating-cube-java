@@ -30,14 +30,15 @@ public class Facet {
             vector.rotate(x, y, z);
     }
 
-    public void draw(Graphics2D graphics) {
+    public void draw(Graphics2D graphics, boolean transparent) {
         Path2D path = new Path2D.Double();
         path.moveTo(vertex[0].getX(), vertex[0].getY());
         path.lineTo(vertex[1].getX(), vertex[1].getY());
         path.lineTo(vertex[2].getX(), vertex[2].getY());
         path.lineTo(vertex[3].getX(), vertex[3].getY());
         path.lineTo(vertex[0].getX(), vertex[0].getY());
-//        graphics.fill(path);
+        if (transparent == false)
+            graphics.fill(path);
         path.closePath();
         graphics.setColor(color);
         graphics.draw(path);
