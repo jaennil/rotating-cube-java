@@ -1,7 +1,9 @@
 import javax.swing.JFrame;
 import java.awt.Graphics2D;
 import java.awt.Graphics;
+import java.awt.RenderingHints;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 public class Frame extends JFrame {
     private final int HEIGHT = 500;
@@ -15,6 +17,7 @@ public class Frame extends JFrame {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        bufferedImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
         cube = new Cube();
         cube.scale(250);
         rotateCube();
@@ -33,6 +36,7 @@ public class Frame extends JFrame {
         System.out.println("paint");
         Graphics2D graphics2d = (Graphics2D)graphics;
         super.paint(graphics2d);
+        graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2d.translate(WIDTH /  2, HEIGHT / 2);
         cube.draw(graphics2d);
     }
