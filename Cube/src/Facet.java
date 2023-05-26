@@ -37,7 +37,7 @@ public class Facet {
         path.lineTo(vertex[2].getX(), vertex[2].getY());
         path.lineTo(vertex[3].getX(), vertex[3].getY());
         path.lineTo(vertex[0].getX(), vertex[0].getY());
-        graphics.fill(path);
+//        graphics.fill(path);
         path.closePath();
         graphics.setColor(color);
         graphics.draw(path);

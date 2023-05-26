@@ -3,12 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RotatingCubeComponent extends JComponent {
+public class RotatingCubeComponent extends JPanel {
     private Cube cube;
     public RotatingCubeComponent() {
-        cube = new Cube();
-        cube.scale(250);
         setBackground(Color.PINK);
+        cube = new Cube();
+        cube.scale(200);
+//        cube.translate(250, 250, 0);
         rotateCube();
     }
 
@@ -19,7 +20,7 @@ public class RotatingCubeComponent extends JComponent {
                 repaint();
             }
         };
-        Timer timer = new Timer(10 ,taskPerformer);
+        Timer timer = new Timer(1 ,taskPerformer);
         timer.start();
     }
 
@@ -27,7 +28,8 @@ public class RotatingCubeComponent extends JComponent {
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D)graphics;
-        cube.translate(WIDTH /  2, HEIGHT / 2,0);
+        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics2D.translate(250, 250);
         cube.draw(graphics2D);
     }
 }

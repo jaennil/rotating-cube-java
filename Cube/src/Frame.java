@@ -16,7 +16,7 @@ public class Frame extends JFrame {
 
     public Frame() throws InterruptedException {
         setTitle("Rotating cube");
-        setBackground(Color.WHITE);
+        setBackground(Color.ORANGE);
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
