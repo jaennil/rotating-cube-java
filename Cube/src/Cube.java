@@ -22,14 +22,15 @@ public class Cube {
                 new R3Vector(0, 1, 0), Color.PINK);
         //правая боковая грань
         facets[5] = new Facet(new R3Vector(1, 1, 0), new R3Vector(1, 1, 1), new R3Vector(1, 0, 1),
-                new R3Vector(1, 0, 0), Color.GRAY);
+                new R3Vector(1, 0, 0), Color.CYAN);
         // make cube inside center
         this.translate(-0.5, -0.5, -0.5);
     }
 
     public void scale(double k) {
-        for (Facet facet : facets)
+        for (Facet facet : facets) {
             facet.scale(k);
+        }
     }
 
     public void translate(double x, double y, double z) {
@@ -38,8 +39,9 @@ public class Cube {
     }
 
     public void rotate(double x, double y, double z){
-        for (Facet facet : facets)
+        for (Facet facet : facets) {
             facet.rotate(x, y, z);
+        }
     }
 
     public void draw(Graphics2D graphics, boolean transparent) {
