@@ -21,6 +21,7 @@ public class RotatingCubeComponent extends JPanel {
     private void rotateCube() {
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+//                cube.rotate(1,2,3);
                 cube.rotate(1,1,1);
                 repaint();
             }

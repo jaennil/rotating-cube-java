@@ -16,13 +16,13 @@ public class Cube {
                 new R3Vector(1, 1, 0), Color.BLUE);
         //нижняя грань в плоскости XZ
         facets[3] = new Facet(new R3Vector(0, 0, 0), new R3Vector(1, 0, 0), new R3Vector(1, 0, 1),
-                new R3Vector(0, 0, 1), Color.BLUE);
+                new R3Vector(0, 0, 1), Color.YELLOW);
         //левая боковая грань в плоскости YZ
         facets[4] = new Facet(new R3Vector(0, 0, 0), new R3Vector(0, 0, 1), new R3Vector(0, 1, 1),
-                new R3Vector(0, 1, 0), Color.MAGENTA);
+                new R3Vector(0, 1, 0), Color.PINK);
         //правая боковая грань
         facets[5] = new Facet(new R3Vector(1, 1, 0), new R3Vector(1, 1, 1), new R3Vector(1, 0, 1),
-                new R3Vector(1, 0, 0), Color.ORANGE);
+                new R3Vector(1, 0, 0), Color.GRAY);
         // make cube inside center
         this.translate(-0.5, -0.5, -0.5);
     }
