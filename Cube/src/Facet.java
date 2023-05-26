@@ -31,6 +31,12 @@ public class Facet {
     }
 
     public void draw(Graphics2D graphics, boolean transparent) {
+        double averageZ = 0;
+        for (int i = 0; i < 4; i++) {
+            averageZ+=vertex[i].getZ();
+        }
+        averageZ/=4;
+        if (averageZ <= 0) return;
         Path2D path = new Path2D.Double();
         path.moveTo(vertex[0].getX(), vertex[0].getY());
         path.lineTo(vertex[1].getX(), vertex[1].getY());
@@ -42,6 +48,5 @@ public class Facet {
         path.closePath();
         graphics.setColor(color);
         graphics.draw(path);
-
     }
 }

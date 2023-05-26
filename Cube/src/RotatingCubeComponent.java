@@ -12,7 +12,7 @@ public class RotatingCubeComponent extends JPanel {
         this.transparent = transparent;
 //        setSize(500, 500);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        setBackground(Color.PINK);
+//        setBackground(Color.PINK);
         cube = new Cube();
         cube.scale(200);
         rotateCube();

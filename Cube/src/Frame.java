@@ -9,13 +9,13 @@ public class Frame extends JFrame {
 
     public Frame() {
         setTitle("Rotating cube");
-        setBackground(Color.ORANGE);
+//        setBackground(Color.ORANGE);
 //        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         panel = new JPanel();
-        panel.setBackground(Color.GREEN);
+//        panel.setBackground(Color.GREEN);
         panel.setLayout(new BorderLayout());
         getContentPane().add(panel);
     }
