@@ -1,10 +1,13 @@
 import javax.swing.JFrame;
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.Color;
 
 public class Frame extends JFrame {
     private final int HEIGHT = 500;
     private final int WIDTH = 500;
     private Cube cube;
+    private BufferedImage bufferedImage;
 
     public Frame() throws InterruptedException {
         setTitle("Rotating cube");
