@@ -3,11 +3,15 @@ import java.awt.*;
 
 public class Controls extends JPanel {
     public JCheckBox transparentCheckBox;
+    public JCheckBox perspectiveCheckBox;
+    public JCheckBox rotationCheckBox;
     public Controls() {
-//        setBackground(Color.ORANGE);
         transparentCheckBox = new JCheckBox("transparent");
-//        JCheckBox ortogonalCheckBox = new JCheckBox("transparent");
         add(transparentCheckBox);
-//        add(ortogonalCheckBox);
+        perspectiveCheckBox = new JCheckBox("perspective view");
+        add(perspectiveCheckBox);
+        rotationCheckBox = new JCheckBox("auto rotation");
+        add(rotationCheckBox);
+
     }
 }

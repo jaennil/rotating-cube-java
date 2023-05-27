@@ -8,26 +8,28 @@ public class RotatingCubeComponent extends JPanel {
     private final int WIDTH = 500;
     private final int HEIGHT = 500;
     public boolean transparent = false;
-    public RotatingCubeComponent(boolean transparent) {
+    public boolean perspective = false;
+    public boolean autoRotation = false;
+    public Timer timer;
+    public RotatingCubeComponent(boolean transparent, boolean perspective, boolean autoRotation) {
         this.transparent = transparent;
-//        setSize(500, 500);
+        this.perspective = perspective;
+        this.autoRotation = autoRotation;
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-//        setBackground(Color.PINK);
         cube = new Cube();
         cube.scale(200);
-        rotateCube();
+        createRotationTimer();
+        addMouseListener(new MouseStuff(cube, this));
     }
 
-    private void rotateCube() {
+    public void createRotationTimer() {
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-//                cube.rotate(1,2,3);
                 cube.rotate(1,1,1);
                 repaint();
             }
         };
-        Timer timer = new Timer(1 ,taskPerformer);
-        timer.start();
+        timer = new Timer(1 ,taskPerformer);
     }
 
     @Override
@@ -36,6 +38,11 @@ public class RotatingCubeComponent extends JPanel {
         Graphics2D graphics2D = (Graphics2D)graphics;
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2D.translate(WIDTH/2, HEIGHT/2);
-        cube.draw(graphics2D, transparent);
+        if (perspective) {
+            cube.drawPerspective(graphics2D, transparent);
+        } else {
+            cube.draw(graphics2D, transparent);
+        }
+
     }
 }

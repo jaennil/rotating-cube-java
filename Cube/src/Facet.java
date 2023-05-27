@@ -1,10 +1,10 @@
-import java.awt.Color;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Path2D;
 
 public class Facet {
     private R3Vector[] vertex;
     private Color color;
+    private boolean transparent = false;
 
     public Facet(R3Vector v1, R3Vector v2, R3Vector v3, R3Vector v4, Color color) {
         vertex = new R3Vector[4];
@@ -31,6 +31,7 @@ public class Facet {
     }
 
     public void draw(Graphics2D graphics, boolean transparent) {
+        this.transparent = transparent;
         R3Vector vector = R3Vector.vect(R3Vector.toR3Vector(vertex[0], vertex[1]), R3Vector.toR3Vector(vertex[1],vertex[2]));
         graphics.setColor(color);
         if (vector.getZ() <= 0) return;
@@ -44,5 +45,35 @@ public class Facet {
             graphics.fill(path);
         path.closePath();
         graphics.draw(path);
+    }
+
+    public void drawPerspective(Graphics2D g, int c, boolean transparent){
+        g.setColor(color);
+        double[] newX = new double[5];
+        double[] newY = new double[5];
+        R3Vector[] newVectors = new R3Vector[5];
+        double t;
+        c=-c;
+        for (int i = 0; i < 4; i++) {
+            t = 1 + vertex[i].getZ()/c;
+            newX[i] = ((vertex[i].getX()) / t);
+            newY[i] = ((vertex[i].getY()) / t);
+            newVectors[i] = new R3Vector(newX[i], newY[i], vertex[i].getZ());
+        }
+        t = 1 + vertex[0].getZ()/c;
+        newX[4] = ((vertex[0].getX()) / t);
+        newY[4] = ((vertex[0].getY()) / t);
+
+        R3Vector vector = R3Vector.vect(R3Vector.toR3Vector(newVectors[0], newVectors[1]), R3Vector.toR3Vector(newVectors[1], newVectors[2]));
+        if (vector.getZ() <= 0) return;
+        Path2D p = new Path2D.Double();
+        p.moveTo(newX[0], newY[0]);
+        for (int i = 1; i < 5; i++) {
+            p.lineTo(newX[i], newY[i]);
+        }
+        if (transparent == false)
+            g.fill(p);
+        p.closePath();
+        g.draw(p);
     }
 }

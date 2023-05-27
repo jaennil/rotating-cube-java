@@ -48,4 +48,8 @@ public class Cube {
         for (Facet facet : facets) facet.draw(graphics, transparent);
     }
 
+    public void drawPerspective(Graphics2D graphics, boolean transparent) {
+        for (Facet facet : facets) facet.drawPerspective(graphics, 600, transparent);
+    }
+
 }
