@@ -1,10 +1,13 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class MouseStuff implements MouseListener {
+public class MouseStuff implements MouseListener, MouseMotionListener {
     public int px, py, rx, ry;
     private Cube cube;
     private RotatingCubeComponent rcc;
+    private int startx;
+    private int starty;
     public MouseStuff(Cube cube, RotatingCubeComponent rcc) {
         this.cube = cube;
         this.rcc = rcc;
@@ -16,22 +19,12 @@ public class MouseStuff implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (rcc.autoRotation) return;
-        px = e.getX();
-        py = e.getY();
-        System.out.println("pressed " + px + " " + py);
+        startx = e.getX();
+        starty = e.getY();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (rcc.autoRotation) return;
-        rx = e.getX();
-        ry = e.getY();
-        System.out.println("released " + rx + " " + ry);
-        double dx = px-rx;
-        double dy = py-ry;
-        cube.rotate(dy/10, dx/10, 0);
-        rcc.repaint();
     }
 
     @Override
@@ -40,5 +33,22 @@ public class MouseStuff implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        double dx = startx-x;
+        double dy = starty-y;
+        cube.rotate(dy, dx, 0);
+        rcc.repaint();
+        startx = x;
+        starty = y;
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
     }
 }

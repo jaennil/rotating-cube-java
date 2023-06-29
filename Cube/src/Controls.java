@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class Controls extends JPanel {
     public JCheckBox transparentCheckBox;
@@ -12,6 +11,5 @@ public class Controls extends JPanel {
         add(perspectiveCheckBox);
         rotationCheckBox = new JCheckBox("auto rotation");
         add(rotationCheckBox);
-
     }
 }

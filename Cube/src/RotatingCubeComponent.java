@@ -5,21 +5,47 @@ import java.awt.event.ActionListener;
 
 public class RotatingCubeComponent extends JPanel {
     private Cube cube;
+    private Window window;
     private final int WIDTH = 500;
     private final int HEIGHT = 500;
     public boolean transparent = false;
     public boolean perspective = false;
     public boolean autoRotation = false;
     public Timer timer;
-    public RotatingCubeComponent(boolean transparent, boolean perspective, boolean autoRotation) {
+
+    public boolean isTransparent() {
+        return transparent;
+    }
+
+    public void setTransparent(boolean transparent) {
         this.transparent = transparent;
+    }
+
+    public boolean isPerspective() {
+        return perspective;
+    }
+
+    public void setPerspective(boolean perspective) {
         this.perspective = perspective;
+    }
+
+    public boolean isAutoRotation() {
+        return autoRotation;
+    }
+
+    public void setAutoRotation(boolean autoRotation) {
         this.autoRotation = autoRotation;
+    }
+
+    public RotatingCubeComponent(Window window) {
+        this.window = window;
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         cube = new Cube();
         cube.scale(200);
         createRotationTimer();
-        addMouseListener(new MouseStuff(cube, this));
+        MouseStuff mouseStuff = new MouseStuff(cube, this);
+        addMouseListener(mouseStuff);
+        addMouseMotionListener(mouseStuff);
     }
 
     public void createRotationTimer() {

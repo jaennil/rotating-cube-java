@@ -34,7 +34,8 @@ public class Facet {
         this.transparent = transparent;
         R3Vector vector = R3Vector.vect(R3Vector.toR3Vector(vertex[0], vertex[1]), R3Vector.toR3Vector(vertex[1],vertex[2]));
         graphics.setColor(color);
-        if (vector.getZ() <= 0) return;
+        if (!transparent)
+            if (vector.getZ() <= 0) return;
         Path2D path = new Path2D.Double();
         path.moveTo(vertex[0].getX(), vertex[0].getY());
         path.lineTo(vertex[1].getX(), vertex[1].getY());
@@ -47,33 +48,35 @@ public class Facet {
         graphics.draw(path);
     }
 
-    public void drawPerspective(Graphics2D g, int c, boolean transparent){
-        g.setColor(color);
+    public void drawPerspective(Graphics2D graphics2D, int c, boolean transparent){
+        graphics2D.setColor(color);
         double[] newX = new double[5];
         double[] newY = new double[5];
         R3Vector[] newVectors = new R3Vector[5];
         double t;
-        c=-c;
+        c = -c;
         for (int i = 0; i < 4; i++) {
-            t = 1 + vertex[i].getZ()/c;
+            t = 1 + vertex[i].getZ() / c;
             newX[i] = ((vertex[i].getX()) / t);
             newY[i] = ((vertex[i].getY()) / t);
             newVectors[i] = new R3Vector(newX[i], newY[i], vertex[i].getZ());
         }
-        t = 1 + vertex[0].getZ()/c;
+        t = 1 + vertex[0].getZ() / c;
         newX[4] = ((vertex[0].getX()) / t);
         newY[4] = ((vertex[0].getY()) / t);
 
-        R3Vector vector = R3Vector.vect(R3Vector.toR3Vector(newVectors[0], newVectors[1]), R3Vector.toR3Vector(newVectors[1], newVectors[2]));
-        if (vector.getZ() <= 0) return;
-        Path2D p = new Path2D.Double();
-        p.moveTo(newX[0], newY[0]);
+        if (!transparent) {
+            R3Vector vector = R3Vector.vect(R3Vector.toR3Vector(newVectors[0], newVectors[1]), R3Vector.toR3Vector(newVectors[1], newVectors[2]));
+            if (vector.getZ() <= 0) return;
+        }
+        Path2D path = new Path2D.Double();
+        path.moveTo(newX[0], newY[0]);
         for (int i = 1; i < 5; i++) {
-            p.lineTo(newX[i], newY[i]);
+            path.lineTo(newX[i], newY[i]);
         }
         if (transparent == false)
-            g.fill(p);
-        p.closePath();
-        g.draw(p);
+            graphics2D.fill(path);
+        path.closePath();
+        graphics2D.draw(path);
     }
 }
