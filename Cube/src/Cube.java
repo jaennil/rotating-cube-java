@@ -1,7 +1,9 @@
 import java.awt.*;
 
 public class Cube {
-    private Facet[] facets;
+    private boolean transparent = false;
+    private boolean perspective = false;
+    private final Facet[] facets;
 
     public Cube() {
         facets = new Facet[6];
@@ -50,6 +52,22 @@ public class Cube {
 
     public void drawPerspective(Graphics2D graphics, boolean transparent) {
         for (Facet facet : facets) facet.drawPerspective(graphics, 600, transparent);
+    }
+
+    public boolean isTransparent() {
+        return transparent;
+    }
+
+    public void setTransparent(boolean transparent) {
+        this.transparent = transparent;
+    }
+
+    public boolean isPerspective() {
+        return perspective;
+    }
+
+    public void setPerspective(boolean perspective) {
+        this.perspective = perspective;
     }
 
 }

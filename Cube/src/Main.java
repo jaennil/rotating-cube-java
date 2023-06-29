@@ -1,6 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        Window window = new Window();
-        RotatingCubeComponent rcc = new RotatingCubeComponent(window);
+        Cube cube = new Cube();
+        cube.scale(200);
+        CubeView cubeView = new CubeView(cube);
+        CubeController controller = new CubeController(cubeView, cube);
     }
 }
